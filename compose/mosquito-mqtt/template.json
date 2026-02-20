@@ -1,0 +1,8 @@
+{
+  "name": "EclipseMosquittoMQTT",
+  "description": "An open source MQTT broker.",
+  "icon": "https://raw.githubusercontent.com/miikasyvanen/mos-hub-templates/refs/heads/main/images/mosquitto-mqtt.png",
+  "website": "https://mosquitto.org/",
+  "web_ui_url": "mqtt://IP-ADRESS:1883",
+  "category": "Smart Home"
+}
