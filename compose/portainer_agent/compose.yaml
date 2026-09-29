@@ -1,0 +1,14 @@
+services:
+  portainer_agent:
+    container_name: portainer_agent
+    # Portainer Agent: antaa erillisen Portainer-palvelimen hallita tämän koneen Dockeria.
+    # Lisää Portainerissa ympäristö: Environments -> Add environment -> Docker Standalone ->
+    # Agent, osoitteeksi tämän koneen IP:9001.
+    image: portainer/agent:lts
+    restart: unless-stopped
+    ports:
+      - "9001:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+      - /:/host
