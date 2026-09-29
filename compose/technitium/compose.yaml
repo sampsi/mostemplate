@@ -1,0 +1,19 @@
+services:
+  technitium:
+    container_name: technitium
+    # Technitium DNS Server: oma DNS-palvelin (mainosten esto, välimuisti, DoH/DoT, omat vyöhykkeet).
+    # Hallinta selaimella http://IP:5380 - vaihda oletussalasana (admin/admin) heti ensimmäisellä kirjautumisella.
+    image: technitium/dns-server:latest
+    hostname: technitium
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Helsinki
+      - DNS_SERVER_DOMAIN=technitium
+    ports:
+      - "5380:5380/tcp"                 # web-hallinta
+      - "${DNS_IP:-0.0.0.0}:53:53/udp"  # DNS
+      - "${DNS_IP:-0.0.0.0}:53:53/tcp"
+    volumes:
+      - ./config:/etc/dns
+    sysctls:
+      - net.ipv4.ip_local_port_range=1024 65000
