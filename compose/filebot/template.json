@@ -1,0 +1,8 @@
+{
+  "name": "FileBot",
+  "description": "Automatic media organizer: watches a folder, extracts RAR releases, identifies movies and TV episodes (TMDB/TheTVDB) and renames/moves them into leffat/ and sarjat/. Requires a FileBot license.",
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/filebot.png",
+  "website": "https://www.filebot.net/",
+  "project": "https://github.com/filebot/filebot-docker",
+  "category": "Media"
+}

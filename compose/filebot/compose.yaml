@@ -1,0 +1,43 @@
+services:
+  filebot:
+    container_name: filebot
+    # FileBotin virallinen image, watcher = valvoo syötekansiota ja ajaa AMC-skriptin
+    # (tunnistus TMDB/TheTVDB, RAR-purku, nimeäminen, siirto) aina kun sinne tulee uutta.
+    # FileBot vaatii lisenssin: kopioi .psm tiedostoksi ./data/license.psm ja aja kerran
+    #   docker compose run --rm --entrypoint filebot filebot --license /data/license.psm
+    image: rednoah/filebot:watcher
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Helsinki
+      - PUID=0
+      - PGID=0
+      # sekunteja viimeisestä muutoksesta ennen käsittelyä (ei keskeneräisiä latauksia)
+      - SETTLE_DOWN_TIME=600
+    volumes:
+      - ./data:/data                    # lisenssi, välimuisti, amc.log
+      - ./puretut:/puretut              # RAR-purun väliaikaiskansio
+      - /mnt/data/media:/media          # MUUTA: mediakansio (syöte odottaa/, kohteet leffat/ ja sarjat/)
+    command:
+      - /media/odottaa
+      - --output
+      - /media
+      - --action
+      - move
+      - --lang
+      - fi
+      - --conflict
+      - skip                            # ei koskaan korvata olemassa olevaa
+      - -non-strict
+      - --log-file
+      - /data/amc.log
+      - --def
+      - unsorted=y                      # tunnistamattomat -> Unsorted
+      - music=n
+      - artwork=n
+      - extractFolder=/puretut
+      - deleteAfterExtract=y
+      - clean=y
+      - skipExtract=n
+      - excludeList=/data/amc.excludes
+      - "movieFormat=leffat/{n.colon(' - ')} ({y})/{n.colon(' - ')} ({y}){subt}"
+      - "seriesFormat=sarjat/{n.colon(' - ')}/Season {s.pad(2)}/{n.colon(' - ')} - {s00e00} - {t.colon(' - ')}{subt}"
