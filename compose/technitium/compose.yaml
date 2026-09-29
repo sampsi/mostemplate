@@ -10,7 +10,8 @@ services:
       - TZ=Europe/Helsinki
       - DNS_SERVER_DOMAIN=technitium
     ports:
-      - "5380:5380/tcp"                 # web-hallinta
+      - "5380:5380/tcp"                 # web-hallinta (HTTP)
+      - "53443:53443/tcp"               # web-hallinta HTTPS + klusterin nodejen välinen liikenne
       - "${DNS_IP:-0.0.0.0}:53:53/udp"  # DNS
       - "${DNS_IP:-0.0.0.0}:53:53/tcp"
     volumes:
