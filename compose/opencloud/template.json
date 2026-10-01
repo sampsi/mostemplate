@@ -1,0 +1,11 @@
+{
+  "name": "OpenCloud",
+  "category": [
+    "Cloud"
+  ],
+  "description": "OpenCloud: self-hosted file storage and sharing (fork of ownCloud Infinite Scale) with desktop and mobile sync clients, spaces and public links. Serves HTTPS itself on port 9200 with a self-signed certificate. Set OC_URL (exact browser address) and ADMIN_SALASANA in .env before the first start; user is admin.",
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/opencloud.png",
+  "website": "https://opencloud.eu/",
+  "web_ui_url": "https://[IP]:[PORT:9200]",
+  "support": "https://docs.opencloud.eu/"
+}
