@@ -1,0 +1,17 @@
+{
+  "name": "VM-Widget",
+  "description": "Dashboard widget that shows all virtual machines with status, CPU and memory, plus a VNC console shortcut and start/stop/restart/force off.",
+  "category": [
+    "System"
+  ],
+  "repository": "https://github.com/sampsi/mos-vm-widget",
+  "architecture": [
+    "amd64",
+    "arm64"
+  ],
+  "driver": false,
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/vm-widget.png",
+  "author": "sampsi",
+  "homepage": "https://github.com/sampsi/mos-vm-widget",
+  "support": "https://github.com/sampsi/mos-vm-widget/issues"
+}

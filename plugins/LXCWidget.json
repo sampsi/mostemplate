@@ -1,0 +1,17 @@
+{
+  "name": "LXC-Widget",
+  "description": "Dashboard widget that shows all LXC containers with status, IP, CPU and memory, plus start/stop/restart/freeze and backups.",
+  "category": [
+    "System"
+  ],
+  "repository": "https://github.com/sampsi/mos-lxc-widget",
+  "architecture": [
+    "amd64",
+    "arm64"
+  ],
+  "driver": false,
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/lxc-widget.png",
+  "author": "sampsi",
+  "homepage": "https://github.com/sampsi/mos-lxc-widget",
+  "support": "https://github.com/sampsi/mos-lxc-widget/issues"
+}

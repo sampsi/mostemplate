@@ -22,6 +22,8 @@ Pluginit: `plugins/<Nimi>.json` (osoittaa GitHub-repoon, jonka releaseissa on `.
 | Plugin | Kuvaus |
 |---|---|
 | Docker-Widget | Etusivun Docker-widget: kontit, tila, päivitykset, web-linkit, start/stop ([sampsi/mos-docker-widget](https://github.com/sampsi/mos-docker-widget)) |
+| LXC-Widget | Etusivun LXC-widget: kontit, IP, CPU/muisti, start/stop/jäädytys, varmuuskopiot ([sampsi/mos-lxc-widget](https://github.com/sampsi/mos-lxc-widget)) |
+| VM-Widget | Etusivun VM-widget: virtuaalikoneet, CPU/muisti, VNC-konsoli, start/stop/pakkosammutus ([sampsi/mos-vm-widget](https://github.com/sampsi/mos-vm-widget)) |
 
 Huomioita:
 
