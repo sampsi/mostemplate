@@ -1,23 +1,26 @@
 # mostemplate
 
-MOS Hub -templatet. Yhden kontin sovellukset ovat suoria Docker-templateja `docker/<Nimi>.json`
-(asetukset muokattavissa MOS:n asennusikkunassa), monikonttiset compose-stackeja kansiossa
-`compose/<nimi>/` (`compose.yaml`, `template.json`, valinnainen `.env`). Kuvakkeet kansiossa `images/` (200x200 PNG).
+MOS Hub -templatet suorina Docker-templateina: `docker/<Nimi>.json` (yksi kontti, asetukset
+muokattavissa MOS:n asennusikkunassa). Kuvakkeet kansiossa `images/` (200x200 PNG).
 
 | Template | Kuvaus |
 |---|---|
-| FileBot | Valvoo kansiota, purkaa RAR-releaset, nimeää elokuvat ja sarjat (vaatii lisenssin) |
+| FileBot | Valvoo kansiota `odottaa/`, purkaa RAR-releaset, nimeää elokuvat ja sarjat (vaatii lisenssin) |
 | PortainerAgent | Portainer Agent, portti 9001 |
-| TechnitiumDNS | Technitium DNS Server, hallinta 5380, DNS-osoite `.env`:n `DNS_IP` |
+| TechnitiumDNS | Technitium DNS Server, hallinta 5380, DNS 53 sidottuna LAN-osoitteeseen (oletus 192.168.1.10) |
 | HomeAssistant | Home Assistant, host-verkko, 8123 |
 | ESPHome | ESPHome-dashboard, host-verkko, 6052 |
 | EclipseMosquittoMQTT | Mosquitto MQTT 1883 + websocketit 9002, luo oletusasetukset |
-| YTZero (docker) | YT Zero, YouTube-tilaukset ilman suosituksia, 3001 |
-| OpenCloud (docker) | Oma pilvitallennus, HTTPS 9200; asennuksessa `OC_URL` ja `IDM_ADMIN_PASSWORD` |
-| NodeRED (docker) | Node-RED flow-editori, 1880 (ei kirjautumista oletuksena) |
+| YTZero | YT Zero, YouTube-tilaukset ilman suosituksia, 3001 |
+| OpenCloud | Oma pilvitallennus, HTTPS 9200; asennuksessa `OC_URL` ja `IDM_ADMIN_PASSWORD` |
+| NodeRED | Node-RED flow-editori, 1880 (ei kirjautumista oletuksena) |
 
-`template.json`: `category` pitää olla taulukko (`["Media"]`), muuten MOS ohittaa sen.
-MOS näyttää kuvakkeen vain Hubista asennetuille stackeille.
+Huomioita:
 
-MOS luo appdata-kansiot root-omisteisina, joten imaget jotka oletuksena ajetaan käyttäjänä 1000
-(OpenCloud, Node-RED) ajetaan `--user=0:0`:lla — muuten ne eivät pysty kirjoittamaan kansioihinsa.
+- `category` pitää olla taulukko (`["Media"]`), muuten MOS ohittaa sen.
+- MOS rakentaa komennon `mos-deploy_docker`-skriptillä: `extra_parameters` ja `post_parameters`
+  pilkotaan `xargs`:lla, joten lainausmerkit toimivat (esim. `--entrypoint=sh` + `-c "..."`).
+  `TZ` lisätään automaattisesti.
+- MOS luo appdata-kansiot root-omisteisina, joten imaget jotka oletuksena ajetaan käyttäjänä 1000
+  (OpenCloud, Node-RED) ajetaan `--user=0:0`:lla — muuten ne eivät pysty kirjoittamaan kansioihinsa.
+- Portin `host`-kenttään voi laittaa myös `IP:portti` (Technitiumin DNS).

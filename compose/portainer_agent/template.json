@@ -1,8 +1,0 @@
-{
-  "name": "PortainerAgent",
-  "category": [ "Tools" ],
-  "description": "Portainer Agent lets a separate Portainer server manage the Docker environment of this machine (containers, stacks, volumes, images). Add it in Portainer as a Docker Standalone environment via Agent on port 9001.",
-  "icon": "https://raw.githubusercontent.com/portainer/portainer/develop/app/assets/ico/apple-touch-icon.png",
-  "website": "https://www.portainer.io/",
-  "support": "https://github.com/portainer/agent"
-}

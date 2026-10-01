@@ -1,0 +1,36 @@
+{
+  "name": "ESPHome",
+  "repo": "ghcr.io/esphome/esphome:stable",
+  "registry": "https://github.com/esphome/esphome/pkgs/container/esphome",
+  "network": "host",
+  "custom_ip": null,
+  "default_shell": "bash",
+  "privileged": true,
+  "extra_parameters": "--restart=unless-stopped",
+  "post_parameters": null,
+  "cpu_set": null,
+  "web_ui_url": "http://[IP]:[PORT:6052]",
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/esphome.png",
+  "category": [
+    "Smart Home"
+  ],
+  "project": "https://esphome.io/",
+  "support": "https://github.com/esphome",
+  "description": "ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems. Dashboard on port 6052 (host network for device discovery).",
+  "donate": null,
+  "requires": null,
+  "paths": [
+    {
+      "name": "Config",
+      "host": "/mnt/cache/appdata/esphome",
+      "container": "/config",
+      "description": "Device YAML files and builds",
+      "required": true
+    }
+  ],
+  "ports": [],
+  "variables": [],
+  "devices": [],
+  "labels": [],
+  "gpus": []
+}

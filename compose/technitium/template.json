@@ -1,9 +1,0 @@
-{
-  "name": "TechnitiumDNS",
-  "category": [ "Network" ],
-  "description": "Technitium DNS Server: self-hosted authoritative and recursive DNS server with ad blocking, caching, DNS-over-HTTPS/TLS/QUIC and a web console on port 5380. Set DNS_IP in .env to this host's LAN address if port 53 is already in use.",
-  "icon": "https://raw.githubusercontent.com/TechnitiumSoftware/DnsServer/master/DnsServerCore/www/img/logo.png",
-  "website": "https://technitium.com/dns/",
-  "web_ui_url": "http://[IP]:[PORT:5380]",
-  "support": "https://github.com/TechnitiumSoftware/DnsServer"
-}

@@ -1,9 +1,0 @@
-{
-  "name": "EclipseMosquittoMQTT",
-  "category": [
-    "Smart Home"
-  ],
-  "description": "Eclipse Mosquitto, an open source MQTT broker. Creates a default config on first start (MQTT 1883, websockets on host port 9002, anonymous access allowed).",
-  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/mosquitto-mqtt.png",
-  "website": "https://mosquitto.org/"
-}

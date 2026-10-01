@@ -1,0 +1,81 @@
+{
+  "name": "FileBot",
+  "repo": "rednoah/filebot:watcher",
+  "registry": "https://hub.docker.com/r/rednoah/filebot",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "bash",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped",
+  "post_parameters": "/media/odottaa --output /media --action move --lang fi --conflict skip -non-strict --log-file /data/amc.log --def unsorted=y music=n artwork=n extractFolder=/puretut deleteAfterExtract=y clean=y skipExtract=n excludeList=/data/amc.excludes \"movieFormat=leffat/{n.colon(' - ')} ({y})/{n.colon(' - ')} ({y}){subt}\" \"seriesFormat=sarjat/{n.colon(' - ')}/Season {s.pad(2)}/{n.colon(' - ')} - {s00e00} - {t.colon(' - ')}{subt}\"",
+  "cpu_set": null,
+  "web_ui_url": null,
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/filebot.png",
+  "category": [
+    "Media"
+  ],
+  "project": "https://www.filebot.net/",
+  "support": "https://github.com/filebot/filebot-docker",
+  "description": "Automatic media organizer: watches <media>/odottaa, extracts RAR releases, identifies movies and TV episodes (TMDB/TheTVDB, Finnish titles) and moves them into leffat/ and sarjat/ (never overwrites). Requires a FileBot license: copy the .psm file to the appdata folder as license.psm and run once: docker exec FileBot filebot --license /data/license.psm",
+  "donate": null,
+  "requires": null,
+  "paths": [
+    {
+      "name": "AppData",
+      "host": "/mnt/cache/appdata/filebot",
+      "container": "/data",
+      "description": "License, cache, amc.log",
+      "required": true
+    },
+    {
+      "name": "Extract",
+      "host": "/mnt/cache/appdata/filebot/puretut",
+      "container": "/puretut",
+      "description": "Temporary folder for RAR extraction",
+      "required": true
+    },
+    {
+      "name": "Media",
+      "host": "/mnt/data/media",
+      "container": "/media",
+      "description": "Media root: input odottaa/, output leffat/ and sarjat/",
+      "required": true
+    }
+  ],
+  "ports": [],
+  "variables": [
+    {
+      "name": "PUID",
+      "key": "PUID",
+      "value": "0",
+      "description": "User ID",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "0"
+    },
+    {
+      "name": "PGID",
+      "key": "PGID",
+      "value": "0",
+      "description": "Group ID",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "0"
+    },
+    {
+      "name": "SETTLE_DOWN_TIME",
+      "key": "SETTLE_DOWN_TIME",
+      "value": "600",
+      "description": "Seconds since last change before processing (skips unfinished downloads)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "600"
+    }
+  ],
+  "devices": [],
+  "labels": [],
+  "gpus": []
+}
