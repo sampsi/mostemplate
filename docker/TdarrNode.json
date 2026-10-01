@@ -1,0 +1,259 @@
+{
+  "name": "TdarrNode",
+  "repo": "ghcr.io/haveagitgat/tdarr_node:2.91.01",
+  "registry": "https://github.com/HaveAGitGat/Tdarr/pkgs/container/tdarr_node",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "bash",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped --cap-add=SYS_ADMIN",
+  "post_parameters": null,
+  "cpu_set": null,
+  "web_ui_url": null,
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/tdarr.png",
+  "category": [
+    "Media"
+  ],
+  "project": "https://home.tdarr.io/",
+  "support": "https://github.com/HaveAGitGat/Tdarr/issues",
+  "description": "Tdarr Node: transcoding worker that joins a Tdarr server. The image version MUST match the server version (currently 2.91.01) or the node will not connect - change the tag when the server is updated. Intel/AMD GPU via /dev/dri (QSV/VAAPI); for NVIDIA add --gpus=all to extra parameters. Media paths must be the same as on the server (mapped node) or use path translators.",
+  "donate": null,
+  "requires": null,
+  "paths": [
+    {
+      "name": "Configs",
+      "host": "/mnt/cache/appdata/tdarr_node/configs",
+      "container": "/app/configs",
+      "description": "Node configuration",
+      "required": true
+    },
+    {
+      "name": "Logs",
+      "host": "/mnt/cache/appdata/tdarr_node/logs",
+      "container": "/app/logs",
+      "description": "Node logs",
+      "required": true
+    },
+    {
+      "name": "Viihde",
+      "host": "/mnt/remotes/192.168.1.4/viihde",
+      "container": "/viihde",
+      "description": "Media library (same path as on the server)",
+      "required": true
+    },
+    {
+      "name": "Siirto",
+      "host": "/mnt/remotes/192.168.1.4/media",
+      "container": "/siirto",
+      "description": "Second media library (same path as on the server)",
+      "required": true
+    },
+    {
+      "name": "Transcode Cache",
+      "host": "/mnt/remotes/192.168.1.4/transcodecache",
+      "container": "/temp",
+      "description": "Transcode cache (same as the server cache)",
+      "required": true
+    },
+    {
+      "name": "Transcode Output",
+      "host": "/mnt/remotes/192.168.1.4/transcode",
+      "container": "/transcode",
+      "description": "Optional output folder",
+      "required": true
+    }
+  ],
+  "ports": [],
+  "variables": [
+    {
+      "name": "nodeName",
+      "key": "nodeName",
+      "value": "nucserver",
+      "description": "Node name shown in Tdarr",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "nucserver"
+    },
+    {
+      "name": "serverIP",
+      "key": "serverIP",
+      "value": "192.168.1.4",
+      "description": "Tdarr server address",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "192.168.1.4"
+    },
+    {
+      "name": "serverPort",
+      "key": "serverPort",
+      "value": "8266",
+      "description": "Tdarr server port",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "8266"
+    },
+    {
+      "name": "apiKey",
+      "key": "apiKey",
+      "value": "",
+      "description": "Tdarr API key (Tdarr: Options -> API keys), required if server auth is enabled",
+      "required": false,
+      "mask": true,
+      "display": "always",
+      "default": ""
+    },
+    {
+      "name": "inContainer",
+      "key": "inContainer",
+      "value": "true",
+      "description": "Running in a container",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "true"
+    },
+    {
+      "name": "nodeType",
+      "key": "nodeType",
+      "value": "mapped",
+      "description": "mapped = same media paths as the server",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "mapped"
+    },
+    {
+      "name": "ffmpegVersion",
+      "key": "ffmpegVersion",
+      "value": "7",
+      "description": "FFmpeg major version",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "7"
+    },
+    {
+      "name": "priority",
+      "key": "priority",
+      "value": "-1",
+      "description": "Node priority (-1 = none)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "-1"
+    },
+    {
+      "name": "transcodegpuWorkers",
+      "key": "transcodegpuWorkers",
+      "value": "1",
+      "description": "GPU transcode workers",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "1"
+    },
+    {
+      "name": "transcodecpuWorkers",
+      "key": "transcodecpuWorkers",
+      "value": "2",
+      "description": "CPU transcode workers",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "2"
+    },
+    {
+      "name": "healthcheckgpuWorkers",
+      "key": "healthcheckgpuWorkers",
+      "value": "1",
+      "description": "GPU health check workers",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "1"
+    },
+    {
+      "name": "healthcheckcpuWorkers",
+      "key": "healthcheckcpuWorkers",
+      "value": "1",
+      "description": "CPU health check workers",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "1"
+    },
+    {
+      "name": "pollInterval",
+      "key": "pollInterval",
+      "value": "2000",
+      "description": "Polling interval (ms)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "2000"
+    },
+    {
+      "name": "startPaused",
+      "key": "startPaused",
+      "value": "false",
+      "description": "Start the node paused",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "false"
+    },
+    {
+      "name": "maxLogSizeMB",
+      "key": "maxLogSizeMB",
+      "value": "10",
+      "description": "Max log size (MB)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "10"
+    },
+    {
+      "name": "PUID",
+      "key": "PUID",
+      "value": "0",
+      "description": "User ID",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "0"
+    },
+    {
+      "name": "PGID",
+      "key": "PGID",
+      "value": "0",
+      "description": "Group ID",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "0"
+    },
+    {
+      "name": "UMASK_SET",
+      "key": "UMASK_SET",
+      "value": "002",
+      "description": "umask",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "002"
+    }
+  ],
+  "devices": [
+    {
+      "name": "Intel GPU",
+      "host": "/dev/dri",
+      "container": "/dev/dri",
+      "description": "Intel/AMD GPU for QSV/VAAPI hardware transcoding"
+    }
+  ],
+  "labels": [],
+  "gpus": []
+}

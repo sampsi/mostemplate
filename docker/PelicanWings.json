@@ -1,0 +1,140 @@
+{
+  "name": "PelicanWings",
+  "repo": "ghcr.io/pelican/wings:latest",
+  "registry": "https://github.com/pelican-dev/wings",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "sh",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped --tty",
+  "post_parameters": null,
+  "cpu_set": null,
+  "web_ui_url": null,
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/pelican.png",
+  "category": [
+    "Game Server"
+  ],
+  "project": "https://pelican.dev/",
+  "support": "https://pelican.dev/docs/wings/install",
+  "description": "Pelican Wings: the game server daemon for the Pelican Panel; starts game servers as Docker containers on this machine. Setup: create a node in the Panel, copy its config.yml into the Config folder (appdata/pelican-wings/config/config.yml) and restart. In the node settings set Daemon Base Directory to /mnt/cache/appdata/pelican-wings/data (the data path must be identical on host and in the container, that is why it is mapped 1:1). Ports: 8080 daemon API, 2022 SFTP.",
+  "donate": null,
+  "requires": null,
+  "paths": [
+    {
+      "name": "Docker Socket",
+      "host": "/var/run/docker.sock",
+      "container": "/var/run/docker.sock",
+      "description": "Do not change: Wings starts game servers through Docker",
+      "required": true
+    },
+    {
+      "name": "Docker Containers",
+      "host": "/var/lib/docker/containers/",
+      "container": "/var/lib/docker/containers/",
+      "description": "Do not change: container logs for the console",
+      "required": true
+    },
+    {
+      "name": "Config",
+      "host": "/mnt/cache/appdata/pelican-wings/config",
+      "container": "/etc/pelican",
+      "description": "config.yml from the Panel",
+      "required": true
+    },
+    {
+      "name": "Data",
+      "host": "/mnt/cache/appdata/pelican-wings/data",
+      "container": "/mnt/cache/appdata/pelican-wings/data",
+      "description": "Game server files; host and container path must be identical (= Daemon Base Directory in the Panel)",
+      "required": true
+    },
+    {
+      "name": "Lib",
+      "host": "/mnt/cache/appdata/pelican-wings/lib",
+      "container": "/var/lib/pelican",
+      "description": "Backups, archives, state",
+      "required": true
+    },
+    {
+      "name": "Logs",
+      "host": "/mnt/cache/appdata/pelican-wings/logs",
+      "container": "/var/log/pelican",
+      "description": "Wings logs",
+      "required": true
+    },
+    {
+      "name": "Tmp",
+      "host": "/tmp/pelican/",
+      "container": "/tmp/pelican/",
+      "description": "Do not change: install scripts (path must be identical)",
+      "required": true
+    },
+    {
+      "name": "SSL Certs",
+      "host": "/etc/ssl/certs",
+      "container": "/etc/ssl/certs",
+      "description": "Host CA certificates",
+      "required": true,
+      "mode": "ro"
+    }
+  ],
+  "ports": [
+    {
+      "name": "Daemon API",
+      "host": "8080",
+      "container": "8080",
+      "protocol": "tcp",
+      "description": "Wings API used by the Panel",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "8080"
+    },
+    {
+      "name": "SFTP",
+      "host": "2022",
+      "container": "2022",
+      "protocol": "tcp",
+      "description": "SFTP for game server files",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "2022"
+    }
+  ],
+  "variables": [
+    {
+      "name": "WINGS_UID",
+      "key": "WINGS_UID",
+      "value": "988",
+      "description": "User ID that owns the game server files",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "988"
+    },
+    {
+      "name": "WINGS_GID",
+      "key": "WINGS_GID",
+      "value": "988",
+      "description": "Group ID",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "988"
+    },
+    {
+      "name": "WINGS_USERNAME",
+      "key": "WINGS_USERNAME",
+      "value": "pelican",
+      "description": "User name inside the container",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "pelican"
+    }
+  ],
+  "devices": [],
+  "labels": [],
+  "gpus": []
+}

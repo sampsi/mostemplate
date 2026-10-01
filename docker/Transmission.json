@@ -1,0 +1,165 @@
+{
+  "name": "Transmission",
+  "repo": "lscr.io/linuxserver/transmission:latest",
+  "registry": "https://github.com/linuxserver/docker-transmission/pkgs/container/transmission",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "bash",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped",
+  "post_parameters": null,
+  "cpu_set": null,
+  "web_ui_url": "http://[IP]:[PORT:9091]",
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/transmission.png",
+  "category": [
+    "Downloaders"
+  ],
+  "project": "https://transmissionbt.com/",
+  "support": "https://github.com/linuxserver/docker-transmission",
+  "description": "Transmission BitTorrent client (linuxserver.io). Web UI on port 9091, peer port 51413 TCP/UDP. Optional web UI login with USER/PASS.",
+  "donate": null,
+  "requires": null,
+  "paths": [
+    {
+      "name": "Config",
+      "host": "/mnt/cache/appdata/transmission",
+      "container": "/config",
+      "description": "Settings, torrents and resume data",
+      "required": true
+    },
+    {
+      "name": "Downloads",
+      "host": "/mnt/nopeedata",
+      "container": "/downloads",
+      "description": "Download folder",
+      "required": true
+    },
+    {
+      "name": "Watch",
+      "host": "/mnt/cache/appdata/transmission/watch",
+      "container": "/watch",
+      "description": ".torrent files dropped here are added automatically",
+      "required": true
+    }
+  ],
+  "ports": [
+    {
+      "name": "WebUI Port",
+      "host": "9091",
+      "container": "9091",
+      "protocol": "tcp",
+      "description": "Web UI",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "9091"
+    },
+    {
+      "name": "Peer TCP",
+      "host": "51413",
+      "container": "51413",
+      "protocol": "tcp",
+      "description": "Incoming peer connections",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "51413"
+    },
+    {
+      "name": "Peer UDP",
+      "host": "51413",
+      "container": "51413",
+      "protocol": "udp",
+      "description": "Incoming peer connections (UDP/DHT)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "51413"
+    }
+  ],
+  "variables": [
+    {
+      "name": "PUID",
+      "key": "PUID",
+      "value": "1000",
+      "description": "User ID",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "1000"
+    },
+    {
+      "name": "PGID",
+      "key": "PGID",
+      "value": "1000",
+      "description": "Group ID",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "1000"
+    },
+    {
+      "name": "USER",
+      "key": "USER",
+      "value": "",
+      "description": "Web UI user name (optional)",
+      "required": false,
+      "mask": false,
+      "display": "always",
+      "default": ""
+    },
+    {
+      "name": "PASS",
+      "key": "PASS",
+      "value": "",
+      "description": "Web UI password (optional)",
+      "required": false,
+      "mask": true,
+      "display": "always",
+      "default": ""
+    },
+    {
+      "name": "WHITELIST",
+      "key": "WHITELIST",
+      "value": "",
+      "description": "Allowed client IPs, comma separated (optional)",
+      "required": false,
+      "mask": false,
+      "display": "always",
+      "default": ""
+    },
+    {
+      "name": "HOST_WHITELIST",
+      "key": "HOST_WHITELIST",
+      "value": "",
+      "description": "Allowed host names (optional)",
+      "required": false,
+      "mask": false,
+      "display": "always",
+      "default": ""
+    },
+    {
+      "name": "PEERPORT",
+      "key": "PEERPORT",
+      "value": "",
+      "description": "Override peer port (optional)",
+      "required": false,
+      "mask": false,
+      "display": "always",
+      "default": ""
+    },
+    {
+      "name": "TRANSMISSION_WEB_HOME",
+      "key": "TRANSMISSION_WEB_HOME",
+      "value": "",
+      "description": "Alternative web UI path (optional)",
+      "required": false,
+      "mask": false,
+      "display": "always",
+      "default": ""
+    }
+  ],
+  "devices": [],
+  "labels": [],
+  "gpus": []
+}

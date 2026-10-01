@@ -14,6 +14,9 @@ muokattavissa MOS:n asennusikkunassa). Kuvakkeet kansiossa `images/` (200x200 PN
 | YTZero | YT Zero, YouTube-tilaukset ilman suosituksia, 3001 |
 | OpenCloud | Oma pilvitallennus, HTTPS 9200; asennuksessa `OC_URL` ja `IDM_ADMIN_PASSWORD` |
 | NodeRED | Node-RED flow-editori, 1880 (ei kirjautumista oletuksena) |
+| TdarrNode | Tdarr-node unraidin Tdarr-palvelimelle (192.168.1.4), Intel-GPU `/dev/dri`; imagen versio = palvelimen versio (2.91.01) |
+| PelicanWings | Pelican Panelin pelipalvelindaemon, 8080 + SFTP 2022; `config.yml` paneelista |
+| Transmission | Transmission (linuxserver), web 9091, peer 51413 |
 
 Huomioita:
 
