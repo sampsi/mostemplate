@@ -16,7 +16,7 @@
   ],
   "project": "https://www.filebot.net/",
   "support": "https://github.com/filebot/filebot-docker",
-  "description": "Automatic media organizer: watches <media>/odottaa, extracts RAR releases, identifies movies and TV episodes (TMDB/TheTVDB, Finnish titles) and moves them into leffat/ and sarjat/ (never overwrites). Requires a FileBot license: copy the .psm file to the appdata folder as license.psm and run once: docker exec FileBot filebot --license /data/license.psm",
+  "description": "Automatic media organizer: watches <Media>/odottaa, extracts RAR releases, identifies movies and TV episodes (TMDB/TheTVDB, Finnish titles) and moves them into <Media>/leffat/ and <Media>/sarjat/ (never overwrites). Only change the Media and Input paths (Input = Media + /odottaa). Requires a FileBot license: copy the .psm file into the AppData folder as license.psm and run once: docker exec FileBot filebot --license /data/license.psm",
   "donate": null,
   "requires": null,
   "paths": [
@@ -24,21 +24,28 @@
       "name": "AppData",
       "host": "/mnt/cache/appdata/filebot",
       "container": "/data",
-      "description": "License, cache, amc.log",
+      "description": "FileBot settings: put your license file here as license.psm. Also cache and amc.log.",
+      "required": true
+    },
+    {
+      "name": "Media",
+      "host": "/mnt/data/media/viihde",
+      "container": "/media",
+      "description": "Media ROOT folder (not the input folder). FileBot creates leffat/ and sarjat/ here.",
+      "required": true
+    },
+    {
+      "name": "Input",
+      "host": "/mnt/data/media/viihde/odottaa",
+      "container": "/media/odottaa",
+      "description": "Watched input folder, must be INSIDE the Media folder above. Created automatically. Drop new downloads here.",
       "required": true
     },
     {
       "name": "Extract",
       "host": "/mnt/cache/appdata/filebot/puretut",
       "container": "/puretut",
-      "description": "Temporary folder for RAR extraction",
-      "required": true
-    },
-    {
-      "name": "Media",
-      "host": "/mnt/data/media",
-      "container": "/media",
-      "description": "Media root: input odottaa/, output leffat/ and sarjat/",
+      "description": "Temporary folder for RAR extraction. Keep it in appdata, NEVER inside your media library.",
       "required": true
     }
   ],
