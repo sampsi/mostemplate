@@ -1,0 +1,109 @@
+{
+  "name": "YTZero",
+  "repo": "ghcr.io/pelski/ytzero:latest",
+  "registry": "https://github.com/Pelski/ytzero/pkgs/container/ytzero",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "sh",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped",
+  "post_parameters": null,
+  "cpu_set": null,
+  "web_ui_url": "http://[IP]:[PORT:3001]",
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/ytzero.png",
+  "category": [
+    "Media"
+  ],
+  "project": "https://github.com/Pelski/ytzero",
+  "support": "https://github.com/Pelski/ytzero/wiki",
+  "description": "YT Zero: a self-hosted YouTube inbox for your subscriptions without recommendations or a Google account. Reads public channel RSS feeds into a local SQLite database, with watch later, tags, rules, profiles, SponsorBlock and optional yt-dlp downloads with a built-in player. No login by default: enable it in Settings before exposing it.",
+  "donate": null,
+  "requires": null,
+  "paths": [
+    {
+      "name": "AppData",
+      "host": "/mnt/cache/appdata/ytzero",
+      "container": "/data",
+      "description": "Database, image cache and downloads",
+      "required": true
+    }
+  ],
+  "ports": [
+    {
+      "name": "WebUI Port",
+      "host": "3001",
+      "container": "3001",
+      "protocol": "tcp",
+      "description": "Web UI",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "3001"
+    }
+  ],
+  "variables": [
+    {
+      "name": "IDLE_TIMEOUT_SECONDS",
+      "key": "IDLE_TIMEOUT_SECONDS",
+      "value": "120",
+      "description": "Idle timeout",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "120"
+    },
+    {
+      "name": "REFRESH_INTERVAL_MINUTES",
+      "key": "REFRESH_INTERVAL_MINUTES",
+      "value": "5",
+      "description": "Feed refresh interval (minutes)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "5"
+    },
+    {
+      "name": "FULL_SYNC_INTERVAL_MINUTES",
+      "key": "FULL_SYNC_INTERVAL_MINUTES",
+      "value": "15",
+      "description": "Full sync interval (minutes)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "15"
+    },
+    {
+      "name": "VIDEO_MAINTENANCE_MAX_AGE_DAYS",
+      "key": "VIDEO_MAINTENANCE_MAX_AGE_DAYS",
+      "value": "90",
+      "description": "Video maintenance max age (days)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "90"
+    },
+    {
+      "name": "DB_PATH",
+      "key": "DB_PATH",
+      "value": "/data/db/ytzero.db",
+      "description": "SQLite database path inside the container",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "/data/db/ytzero.db"
+    },
+    {
+      "name": "IMG_CACHE_DIR",
+      "key": "IMG_CACHE_DIR",
+      "value": "/data/imgcache",
+      "description": "Image cache path inside the container",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "/data/imgcache"
+    }
+  ],
+  "devices": [],
+  "labels": [],
+  "gpus": []
+}

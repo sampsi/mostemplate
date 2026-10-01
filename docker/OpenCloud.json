@@ -1,0 +1,136 @@
+{
+  "name": "OpenCloud",
+  "repo": "opencloudeu/opencloud:7",
+  "registry": "https://hub.docker.com/r/opencloudeu/opencloud",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "sh",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped --user=0:0 --entrypoint=/bin/sh",
+  "post_parameters": "-c \"opencloud init || true; opencloud server\"",
+  "cpu_set": null,
+  "web_ui_url": "https://[IP]:[PORT:9200]",
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/opencloud.png",
+  "category": [
+    "Cloud"
+  ],
+  "project": "https://opencloud.eu/",
+  "support": "https://docs.opencloud.eu/",
+  "description": "OpenCloud: self-hosted file storage and sharing (fork of ownCloud Infinite Scale) with desktop and mobile sync clients, spaces and public links. Serves HTTPS itself on port 9200 with a self-signed certificate. IMPORTANT: set OC_URL to the exact address you open in the browser (https://SERVER-IP:9200) and set the admin password before the first start. Login user: admin.",
+  "donate": null,
+  "requires": null,
+  "paths": [
+    {
+      "name": "Config",
+      "host": "/mnt/cache/appdata/opencloud/config",
+      "container": "/etc/opencloud",
+      "description": "Configuration and generated secrets (back up!)",
+      "required": true
+    },
+    {
+      "name": "Data",
+      "host": "/mnt/cache/appdata/opencloud/data",
+      "container": "/var/lib/opencloud",
+      "description": "User files and metadata",
+      "required": true
+    }
+  ],
+  "ports": [
+    {
+      "name": "WebUI Port",
+      "host": "9200",
+      "container": "9200",
+      "protocol": "tcp",
+      "description": "Web UI and sync clients (HTTPS)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "9200"
+    }
+  ],
+  "variables": [
+    {
+      "name": "OC_URL",
+      "key": "OC_URL",
+      "value": "https://192.168.1.10:9200",
+      "description": "Exact public URL incl. https and port. Login fails if this does not match the browser address.",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "https://192.168.1.10:9200"
+    },
+    {
+      "name": "IDM_ADMIN_PASSWORD",
+      "key": "IDM_ADMIN_PASSWORD",
+      "value": "",
+      "description": "Initial password for user 'admin' (used on first start only)",
+      "required": true,
+      "mask": true,
+      "display": "always",
+      "default": ""
+    },
+    {
+      "name": "PROXY_TLS",
+      "key": "PROXY_TLS",
+      "value": "true",
+      "description": "true = OpenCloud serves HTTPS itself. false = behind a reverse proxy that does TLS",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "true"
+    },
+    {
+      "name": "PROXY_HTTP_ADDR",
+      "key": "PROXY_HTTP_ADDR",
+      "value": "0.0.0.0:9200",
+      "description": "Listen address",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "0.0.0.0:9200"
+    },
+    {
+      "name": "OC_INSECURE",
+      "key": "OC_INSECURE",
+      "value": "true",
+      "description": "Accept self-signed certificates between internal services",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "true"
+    },
+    {
+      "name": "OC_DEFAULT_LANGUAGE",
+      "key": "OC_DEFAULT_LANGUAGE",
+      "value": "fi",
+      "description": "Default UI language (ISO 639-1)",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "fi"
+    },
+    {
+      "name": "IDM_CREATE_DEMO_USERS",
+      "key": "IDM_CREATE_DEMO_USERS",
+      "value": "false",
+      "description": "Create demo users",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "false"
+    },
+    {
+      "name": "PROXY_ENABLE_BASIC_AUTH",
+      "key": "PROXY_ENABLE_BASIC_AUTH",
+      "value": "false",
+      "description": "Basic auth for WebDAV clients without OpenID Connect",
+      "required": true,
+      "mask": false,
+      "display": "always",
+      "default": "false"
+    }
+  ],
+  "devices": [],
+  "labels": [],
+  "gpus": []
+}
