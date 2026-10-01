@@ -1,0 +1,12 @@
+{
+  "name": "Docker-Widget",
+  "description": "Dashboard widget that shows all Docker containers and compose stacks with status, update badges, web UI links and start/stop/restart.",
+  "category": [ "System" ],
+  "repository": "https://github.com/sampsi/mos-docker-widget",
+  "architecture": [ "amd64", "arm64" ],
+  "driver": false,
+  "icon": "https://raw.githubusercontent.com/sampsi/mostemplate/refs/heads/main/images/docker-widget.png",
+  "author": "sampsi",
+  "homepage": "https://github.com/sampsi/mos-docker-widget",
+  "support": "https://github.com/sampsi/mos-docker-widget/issues"
+}

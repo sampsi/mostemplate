@@ -2,6 +2,7 @@
 
 MOS Hub -templatet suorina Docker-templateina: `docker/<Nimi>.json` (yksi kontti, asetukset
 muokattavissa MOS:n asennusikkunassa). Kuvakkeet kansiossa `images/` (200x200 PNG).
+Pluginit: `plugins/<Nimi>.json` (osoittaa GitHub-repoon, jonka releaseissa on `.deb`).
 
 | Template | Kuvaus |
 |---|---|
@@ -17,6 +18,10 @@ muokattavissa MOS:n asennusikkunassa). Kuvakkeet kansiossa `images/` (200x200 PN
 | TdarrNode | Tdarr-node unraidin Tdarr-palvelimelle (192.168.1.4), Intel-GPU `/dev/dri`; imagen versio = palvelimen versio (2.91.01) |
 | PelicanWings | Pelican Panelin pelipalvelindaemon, 8080 + SFTP 2022; `config.yml` paneelista |
 | Transmission | Transmission (linuxserver), web 9091, peer 51413 |
+
+| Plugin | Kuvaus |
+|---|---|
+| Docker-Widget | Etusivun Docker-widget: kontit, tila, päivitykset, web-linkit, start/stop ([sampsi/mos-docker-widget](https://github.com/sampsi/mos-docker-widget)) |
 
 Huomioita:
 
