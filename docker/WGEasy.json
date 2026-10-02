@@ -16,7 +16,7 @@
   ],
   "project": "https://wg-easy.github.io/wg-easy/",
   "support": "https://github.com/wg-easy/wg-easy",
-  "description": "WireGuard VPN with a web UI (wg-easy v15): create clients, QR codes and configs in the browser. First visit opens a setup wizard: create the admin user, then choose 'No' (new setup), set Host to your public IP or DynDNS name and Port to the VPN host port below (52820). Forward UDP 52820 in your router. The web UI runs over plain HTTP (INSECURE=true) - keep port 8084 LAN-only. Uses the nftables iptables backend (kernels without legacy iptable_nat, e.g. MOS).",
+  "description": "WireGuard VPN with a web UI (wg-easy v15): create clients, QR codes and configs in the browser. First visit opens a setup wizard: create the admin user, then choose 'No' (new setup), set Host to your public IP or DynDNS name and Port to the VPN host port below (default 51820). Forward UDP 51820 in your router. The web UI runs over plain HTTP (INSECURE=true) - keep port 8084 LAN-only. Uses the nftables iptables backend (kernels without legacy iptable_nat, e.g. MOS).",
   "donate": null,
   "requires": null,
   "paths": [
@@ -39,14 +39,14 @@
   "ports": [
     {
       "name": "WireGuard",
-      "host": "52820",
-      "container": "52820",
+      "host": "51820",
+      "container": "51820",
       "protocol": "udp",
-      "description": "VPN port (UDP). Must be the same number as 'Port' in the setup wizard; forward it in your router.",
+      "description": "VPN port (UDP). Must be the same number as 'Port' in the setup wizard (default 51820); forward it in your router.",
       "required": true,
       "mask": false,
       "display": "always",
-      "default": "52820"
+      "default": "51820"
     },
     {
       "name": "Web UI",
