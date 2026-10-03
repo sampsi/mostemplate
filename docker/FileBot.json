@@ -80,6 +80,16 @@
       "mask": false,
       "display": "always",
       "default": "600"
+    },
+    {
+      "name": "INOTIFYWAIT_OPTS",
+      "key": "INOTIFYWAIT_OPTS",
+      "value": "--recursive",
+      "description": "Watch subfolders too (without this a folder that is still being copied after SETTLE_DOWN_TIME is never processed)",
+      "required": false,
+      "mask": false,
+      "display": "advanced",
+      "default": "--recursive"
     }
   ],
   "devices": [],
